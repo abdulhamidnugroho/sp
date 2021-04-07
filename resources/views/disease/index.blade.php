@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Daftar Gejala</h1>
+    <h1>Daftar Penyakit</h1>
 @stop
 
 @section('content')
@@ -18,8 +18,9 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Question</th>
-                        <th>Order</th>
+                        <th>Code</th>
+                        <th>Nama Penyakit</th>
+                        <th>Deskripsi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -48,21 +49,24 @@
                 stateSave: true,
                 language: {
                     search: '<i class="fa fa-search" aria-hidden="true"></i>',
-                    searchPlaceholder: 'Search FAQ'
+                    searchPlaceholder: 'Search Penyakit'
                 },
                 ajax: {
-
+                    url: "{{ route('disease.table') }}",
+                    type: "get",
+                    dataType: "json",
                 },
                 columnDefs: [{
                     searchable: false,
                     orderable: false,
                     targets: 0
                 }],
-                order:[[2,'asc']],
+                order:[[1,'asc']],
                 columns: [
                     { data: "DT_RowIndex" },
-                    { data: "question" },
-                    { data: "order" },
+                    { data: "code" },
+                    { data: "name" },
+                    { data: "description", width: "40%" },
                 ],
             });
         });

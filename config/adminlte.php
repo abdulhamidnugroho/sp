@@ -245,7 +245,7 @@ return [
             'submenu' => [
                 [
                     'text' => 'Daftar Penyakit',
-                    'url'  => 'diseases',
+                    'url'  => 'disease',
                 ],
                 [
                     'text' => 'Tambah Penyakit',

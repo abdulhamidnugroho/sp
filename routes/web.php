@@ -20,9 +20,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('diseases', [DiseaseController::class, 'index'])->name('disease.index');
+Route::get('disease', [DiseaseController::class, 'index'])->name('disease.index');
+Route::get('disease/table', [DiseaseController::class, 'getData'])->name('disease.table');
 
 Route::get('evidence', [EvidenceController::class, 'index'])->name('evidence.index');
+Route::get('evidence/table', [EvidenceController::class, 'getData'])->name('evidence.table');
 
 Route::get('analysis', [AnalysisController::class, 'index'])->name('analysis.index');
+Route::post('analysis', [AnalysisController::class, 'analysis'])->name('analysis');
 

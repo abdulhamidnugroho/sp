@@ -15,16 +15,7 @@ class DiseaseController extends Controller
 
     public function getData(DataTables $dt)
     {
-        $columns = [
-            "announcement.id",
-            "announcement.title",
-            "announcement.content",
-            "announcement.status",
-            "announcement.type",
-            "announcement.push",
-        ];
-
-        $data = Disease::select($columns);
+        $data = Disease::query();
 
         return $dt->eloquent($data)
             ->addIndexColumn()

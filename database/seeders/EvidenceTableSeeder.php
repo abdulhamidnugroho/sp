@@ -18,7 +18,7 @@ class EvidenceTableSeeder extends Seeder
                 'name'          => 'Semaian cabai  gagal tumbuh',
             ],
             [
-                'name'          => 'Biji yang sudah berkecambah matti tiba-tiba',
+                'name'          => 'Biji yang sudah berkecambah mati tiba-tiba',
             ],
             [
                 'name'          => 'Semaian kerdil',

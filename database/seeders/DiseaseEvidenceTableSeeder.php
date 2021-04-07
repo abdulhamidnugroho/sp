@@ -22,27 +22,27 @@ class DiseaseEvidenceTableSeeder extends Seeder
             [
                 'disease_id'    => 1,
                 'evidence_id'   => 2,
-                'cf_rule'       => 0.5
+                'cf_rule'       => 0.4
             ],
             [
                 'disease_id'    => 1,
                 'evidence_id'   => 3,
-                'cf_rule'       => 0.3
+                'cf_rule'       => 0.2
             ],
             [
                 'disease_id'    => 1,
                 'evidence_id'   => 4,
-                'cf_rule'       => 0.7
+                'cf_rule'       => 0.8
             ],
             [
                 'disease_id'    => 2,
                 'evidence_id'   => 5,
-                'cf_rule'       => 0.1
+                'cf_rule'       => 0.2
             ],
             [
                 'disease_id'    => 2,
                 'evidence_id'   => 6,
-                'cf_rule'       => 0.3
+                'cf_rule'       => 0.6
             ],
             [
                 'disease_id'    => 2,
@@ -57,7 +57,7 @@ class DiseaseEvidenceTableSeeder extends Seeder
             [
                 'disease_id'    => 3,
                 'evidence_id'   => 9,
-                'cf_rule'       => 0.1
+                'cf_rule'       => 0.4
             ],
             [
                 'disease_id'    => 3,
@@ -72,7 +72,7 @@ class DiseaseEvidenceTableSeeder extends Seeder
             [
                 'disease_id'    => 3,
                 'evidence_id'   => 12,
-                'cf_rule'       => 0.3
+                'cf_rule'       => 0.2
             ],
             [
                 'disease_id'    => 4,
@@ -82,12 +82,12 @@ class DiseaseEvidenceTableSeeder extends Seeder
             [
                 'disease_id'    => 4,
                 'evidence_id'   => 14,
-                'cf_rule'       => 0.5
+                'cf_rule'       => 0.8
             ],
             [
                 'disease_id'    => 4,
                 'evidence_id'   => 4,
-                'cf_rule'       => 0.3
+                'cf_rule'       => 1
             ],
             [
                 'disease_id'    => 4,
