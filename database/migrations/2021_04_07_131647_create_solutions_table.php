@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEvidencesTable extends Migration
+class CreateSolutionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateEvidencesTable extends Migration
      */
     public function up()
     {
-        Schema::create('evidences', function (Blueprint $table) {
+        Schema::create('solutions', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->foreignId('disease_id')->nullable()->constrained('diseases')->onUpdate('cascade')->onDelete('cascade');
+            $table->text('solution');
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ class CreateEvidencesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('evidences');
+        Schema::dropIfExists('solutions');
     }
 }

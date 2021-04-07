@@ -16,6 +16,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             DiseaseTableSeeder::class,
             EvidenceTableSeeder::class,
+            SolutionTableSeeder::class,
+            DiseaseEvidenceTableSeeder::class
         ]);
     }
 }
