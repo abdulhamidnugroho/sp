@@ -13,6 +13,15 @@ class DiseaseTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        DB::table('diseases')->insert([
+            [
+                'code'       => 'P01',
+                'name'       => 'Penyakit 1',
+            ],
+            [
+                'code'       => 'P02',
+                'name'       => 'Penyakit 2',
+            ],
+        ]);
     }
 }

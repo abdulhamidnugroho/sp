@@ -15,6 +15,10 @@ class CreateEvidencesTable extends Migration
     {
         Schema::create('evidences', function (Blueprint $table) {
             $table->id();
+            $table->string('code');
+            $table->string('name');
+            $table->float('cf_rule');
+            $table->unsignedBigInteger('penyakit_id')->nullable();
             $table->timestamps();
         });
     }
