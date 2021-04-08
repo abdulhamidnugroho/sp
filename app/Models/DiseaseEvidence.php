@@ -10,4 +10,9 @@ class DiseaseEvidence extends Model
     use HasFactory;
 
     protected $table = 'disease_evidences';
+
+    public function evidence()
+    {
+        return $this->belongsTo(Evidence::class);
+    }
 }

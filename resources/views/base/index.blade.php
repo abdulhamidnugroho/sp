@@ -37,6 +37,27 @@
     </div>
     <!-- /.card-body -->
 </div>
+<div class="modal fade" id="modal-lg">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h4 class="modal-title"></h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
 @stop
 
 @section('css')
@@ -78,7 +99,7 @@
                         orderable: false,
                         className: 'text-center',
                         render: function (data, type, row) {
-                            return '<button class="btn btn-block btn-info" data-id="' + row.id + '" href="#" aria-pressed="false">Detail</a>'+
+                            return '<button class="btn btn-block btn-info base-detail" data-id="' + row.id + '" href="#" aria-pressed="false">Detail</a>'+
                             '<button class="btn btn-block btn-secondary" href="{{ route("base.edit",["id"=>"/"]) }}/' + row.id +'" aria-pressed="false">Edit</button>'+
                             '<button class="btn btn-block btn-danger" href="javascript:void(0)" onclick=deleteRow('+ row.id +')>Delete</button>';
                         },
@@ -89,22 +110,24 @@
         });
 
         $(document).on('click', '.base-detail', function(){
+            console.log('teasd de');
             let id = $(this).data('id');
 
-            $('#modalProduct').modal();
+            $('#modal-lg').modal();
 
             $.ajax({
-                url : id,
+                url : '{{ env('APP_URL')}}' + '/base/detail/' + id,
                 method : 'post',
                 data: {
                     _token: "{{ csrf_token() }}",
                 },
-                beforeSend: function (xhr) {
-                },
                 success : function (response) {
-                    $('#modalProduct .modal-body').empty();
+                    $('#modal-lg .modal-body').empty();
+                    $('#modal-lg .modal-title').empty();
+
                     if (response.modal) {
-                        $('#modalProduct .modal-body').html(response.modal);
+                        $('#modal-lg .modal-body').html(response.modal);
+                        $('#modal-lg .modal-title').append(response.disease);
                     }
                 },
                 error : function (xhr) {

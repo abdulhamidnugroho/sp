@@ -40,6 +40,7 @@ Route::post('analysis', [AnalysisController::class, 'analysis'])->name('analysis
 
 Route::get('base', [GeneralController::class, 'index'])->name('base.index');
 Route::get('base/table', [GeneralController::class, 'getData'])->name('base.table');
+Route::post('base/detail/{id}', [GeneralController::class, 'show'])->name('base.detail');
 Route::get('base/create', [GeneralController::class, 'create'])->name('base.create');
 Route::post('base/store', [GeneralController::class, 'store'])->name('base.store');
 Route::get('base/edit', [GeneralController::class, 'edit'])->name('base.edit');
