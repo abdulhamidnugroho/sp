@@ -24,6 +24,15 @@ class GeneralController extends Controller
             ->toJson();
     }
 
+    public function create()
+    {
+        $diseases_id = array_unique(DiseaseEvidence::pluck('disease_id')->toArray());
+        $diseases = Disease::select('id', 'name')->whereNotIn('id', $diseases_id)->get();
+        $evidences = Evidence::all();
+
+        return view('base.form', compact('diseases', 'evidences'));
+    }
+
     public function show($id)
     {
         $disease = Disease::findOrFail($id);
