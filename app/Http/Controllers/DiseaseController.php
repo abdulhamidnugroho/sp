@@ -62,7 +62,6 @@ class DiseaseController extends Controller
 
             $code = max($codes) < 10 ? "P0" . strval(max($codes) + 1) : "P" . strval(max($codes) + 1);
 
-            // Save data
             $disease->code = $code;
             $disease->name = $request->name;
             $disease->description = $request->description;

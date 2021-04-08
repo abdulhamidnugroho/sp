@@ -3,6 +3,7 @@
 use App\Http\Controllers\AnalysisController;
 use App\Http\Controllers\DiseaseController;
 use App\Http\Controllers\EvidenceController;
+use App\Http\Controllers\GeneralController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,7 +30,17 @@ Route::post('disease/update', [DiseaseController::class, 'update'])->name('disea
 
 Route::get('evidence', [EvidenceController::class, 'index'])->name('evidence.index');
 Route::get('evidence/table', [EvidenceController::class, 'getData'])->name('evidence.table');
+Route::get('evidence/create', [EvidenceController::class, 'create'])->name('evidence.create');
+Route::post('evidence/store', [EvidenceController::class, 'store'])->name('evidence.store');
+Route::get('evidence/edit', [EvidenceController::class, 'edit'])->name('evidence.edit');
+Route::post('evidence/update', [EvidenceController::class, 'update'])->name('evidence.update');
 
 Route::get('analysis', [AnalysisController::class, 'index'])->name('analysis.index');
 Route::post('analysis', [AnalysisController::class, 'analysis'])->name('analysis');
 
+Route::get('base', [GeneralController::class, 'index'])->name('base.index');
+Route::get('base/table', [GeneralController::class, 'getData'])->name('base.table');
+Route::get('base/create', [GeneralController::class, 'create'])->name('base.create');
+Route::post('base/store', [GeneralController::class, 'store'])->name('base.store');
+Route::get('base/edit', [GeneralController::class, 'edit'])->name('base.edit');
+Route::post('base/update', [GeneralController::class, 'update'])->name('base.update');

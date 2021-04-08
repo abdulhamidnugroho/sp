@@ -235,7 +235,7 @@ return [
                 ],
                 [
                     'text' => 'Tambah Gejala',
-                    'url'  => '#',
+                    'url'  => 'evidence/create',
                 ],
             ],
         ],
@@ -250,6 +250,20 @@ return [
                 [
                     'text' => 'Tambah Penyakit',
                     'url'  => 'disease/create',
+                ],
+            ],
+        ],
+        [
+            'text'    => 'Basis Pengetahuan',
+            'icon'    => 'fas fa-fw fa-share',
+            'submenu' => [
+                [
+                    'text' => 'Daftar Basis Pengetahuan',
+                    'url'  => 'base',
+                ],
+                [
+                    'text' => 'Tambah Basis Pengetahuan',
+                    'url'  => 'base/create',
                 ],
             ],
         ],

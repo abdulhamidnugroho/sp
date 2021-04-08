@@ -13,6 +13,12 @@
     </div>
     <!-- /.card-header -->
     <div class="card-body">
+        @if (session('success'))
+            <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h5><i class="icon fas fa-check"></i>{{ session('success') }}</h5>
+            </div>
+        @endif
         <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
             <table id="dataTable" class="table table-striped">
                 <thead>

@@ -15,4 +15,9 @@ class Disease extends Model
     {
         return $this->hasMany(Solution::class, 'disease_id');
     }
+
+    public function evidence_rules()
+    {
+        return $this->hasMany(DiseaseEvidence::class);
+    }
 }
