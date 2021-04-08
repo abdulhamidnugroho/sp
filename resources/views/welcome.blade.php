@@ -7,11 +7,7 @@
 @stop
 
 @section('content')
-    <p>Welcome to this beautiful admin panel.</p>
-@stop
-
-@section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
+    <p>Selamat Datang di Sistem Pakar Diagnosa Penyakit Tanaman Cabai dengan Metode Certainty Factor</p>
 @stop
 
 @section('js')

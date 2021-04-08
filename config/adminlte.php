@@ -249,7 +249,7 @@ return [
                 ],
                 [
                     'text' => 'Tambah Penyakit',
-                    'url'  => '#',
+                    'url'  => 'disease/create',
                 ],
             ],
         ],

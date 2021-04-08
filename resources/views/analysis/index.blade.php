@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'Analisis')
 
 @section('content_header')
     <h1>Analisis</h1>
@@ -19,9 +19,9 @@
             <div class="card-body">
                 @foreach ($evidences as $item)
                 <div class="form-group row">
-                    <label for="gejala" class="col-sm-10 col-form-label">{{ $item->name }}</label>
-                    <div class="col-sm-10">
-                        <select name="evidences[]" id="evidences">
+                    <label for="gejala" class="col-sm-9 col-form-label">{{ $item->name }}</label>
+                    <div class="col-sm-3">
+                        <select class="form-control" name="evidences[]" id="evidences">
                             @foreach ($user_rule as $key => $value)
                                 <option value="{{ $item->id . '-' . $value }}">{{ $key }}</option>
                             @endforeach
@@ -34,9 +34,6 @@
             <div class="card-footer">
                 <button type="submit" class="btn btn-info">Submit</button>
                 <button type="reset" class="btn btn-default">Reset</button>
-                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-lg">
-                    Launch Large Modal
-                </button>
             </div>
             <!-- /.card-footer -->
         </form>
@@ -65,10 +62,6 @@
   <!-- /.modal -->
 @stop
 
-@section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
-@stop
-
 @section('js')
   <script>
     $(document).on('submit', '#analysisForm', function (e) {
@@ -86,9 +79,8 @@
             data: data,
             success: function (response) {
                 console.log(response);
-
-
                 $('#modal-lg .modal-body').empty();
+
                 if (response.modal) {
                     $('#modal-lg').modal('show')
                     console.log('in');

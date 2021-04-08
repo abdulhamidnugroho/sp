@@ -22,6 +22,10 @@ Route::get('/', function () {
 
 Route::get('disease', [DiseaseController::class, 'index'])->name('disease.index');
 Route::get('disease/table', [DiseaseController::class, 'getData'])->name('disease.table');
+Route::get('disease/create', [DiseaseController::class, 'create'])->name('disease.create');
+Route::post('disease/store', [DiseaseController::class, 'store'])->name('disease.store');
+Route::get('disease/edit', [DiseaseController::class, 'edit'])->name('disease.edit');
+Route::post('disease/update', [DiseaseController::class, 'update'])->name('disease.update');
 
 Route::get('evidence', [EvidenceController::class, 'index'])->name('evidence.index');
 Route::get('evidence/table', [EvidenceController::class, 'getData'])->name('evidence.table');
