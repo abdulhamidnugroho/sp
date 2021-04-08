@@ -33,6 +33,11 @@ class GeneralController extends Controller
         return view('base.form', compact('diseases', 'evidences'));
     }
 
+    public function store(Request $request)
+    {
+
+    }
+
     public function show($id)
     {
         $disease = Disease::findOrFail($id);
@@ -42,6 +47,16 @@ class GeneralController extends Controller
             'modal' => view('base.detail', compact('disease', 'evidences'))->toHtml(),
             'disease' => $disease->name
         ]);
+    }
+
+    public function edit()
+    {
+
+    }
+
+    public function update(Request $request)
+    {
+
     }
 
 }
