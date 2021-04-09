@@ -26,7 +26,11 @@ class GeneralController extends Controller
 
     public function create()
     {
-        $diseases_id = array_unique(DiseaseEvidence::pluck('disease_id')->toArray());
+        $diseases_id = array_unique(
+            DiseaseEvidence::pluck('disease_id')->filter(function ($value, $key) {
+            return $value != NULL;
+        })->toArray());
+
         $diseases = Disease::select('id', 'name')->whereNotIn('id', $diseases_id)->get();
         $evidences = Evidence::all();
 
@@ -35,7 +39,46 @@ class GeneralController extends Controller
 
     public function store(Request $request)
     {
+        $ev_cf = json_decode($request->ev_cf);
 
+        if (empty($ev_cf)) {
+            return redirect('base/create')->with('failed', 'Data tidak boleh kosong');
+        }
+
+        // Database Transaction
+        \DB::beginTransaction();
+
+        try {
+            foreach ($ev_cf as $rule) {
+                $data = [
+                    'disease_id'   => $request->disease_id,
+                    'evidence_id'   => $rule->ev_id,
+                    'cf_rule'       => $rule->cf_rule
+                ];
+
+                DiseaseEvidence::insert($data);
+            }
+
+            $response = [
+                'url'   => 'base',
+                'status'    => 'success',
+                'message'   => 'Berhasil Menambahkan Data Basis Pengetahuan!'
+            ];
+        } catch(\Exception $e) {
+            \DB::rollback();
+            \Log::error($request->route()->getName()." : ".$e->getMessage());
+
+            $response = [
+                'url'   => 'base/create',
+                'status'    => 'failed',
+                'message'   => 'Gagal Menambahkan Data Basis Pengetahuan!'
+            ];
+        }
+
+        // End Database Transaction
+        \DB::commit();
+
+        return response()->json($response);
     }
 
     public function show($id)

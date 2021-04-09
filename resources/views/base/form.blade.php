@@ -14,7 +14,7 @@
     <!-- /.card-header -->
 
     <!-- form start -->
-    <form class="form-horizontal" action="{{ isset($base) ? route('disease.update') : route('disease.store') }}" method="POST">
+    <form id="baseForm" class="form-horizontal" action="{{ isset($base) ? route('base.update') : route('base.store') }}" method="POST">
         @csrf
         <div class="card-body">
             @if (session('failed'))
@@ -26,8 +26,11 @@
             <div class="form-group row">
                 <label for="name" class="col-sm-1 col-form-label">Penyakit</label>
                 <div class="col-sm-5">
-                    <select class="form-control" name="disease" id="disease">
+                    <select class="form-control" name="disease_id" id="disease_id" required>
                         @foreach ($diseases as $value)
+                            {{-- @if (isset($base) && )
+
+                            @endif --}}
                             <option value="{{ $value->id }}">{{ $value->name }}</option>
                         @endforeach
                     </select>
@@ -35,13 +38,11 @@
             </div>
             <hr>
             @foreach ($evidences as $key => $item)
-            <div class="form-group row">
-                <div class="col-sm-8 custom-control custom-checkbox">
-                    <input class="custom-control-input" type="checkbox" id="evidence{{ $key + 1 }}" value="option1">
-                    <label for="evidence{{ $key + 1 }}" class="custom-control-label">{{ $key + 1 . '. ' . $item->name }}</label>
-                </div>
+            <div class="form-group row ev-cf">
+                <input type="hidden" class="ev_id" value="{{ $item->id }}">
+                <label for="name" class="col-sm-8 col-form-label">{{ $key + 1 . '. ' . $item->name }}</label>
                 <div class="col-sm-2">
-                    <input type=number step=0.01 min="0" max="1" class="form-control" id="name" name="name" placeholder="CF Expert">
+                    <input type=number step=0.01 min="0" max="1" class="form-control cf_rule" id="name" placeholder="CF Expert">
                 </div>
             </div>
             @endforeach
@@ -57,6 +58,65 @@
 
 @section('js')
     <script>
+        function evCf() {
+            let ev_cf = [];
 
+            $('.ev-cf').each( function (index, value) {
+                let ev_id = $(this).find('.ev_id').val();
+                let cf_rule = $(this).find('.cf_rule').val();
+
+                if (cf_rule !== '') {
+                    let temp = {};
+                    temp["ev_id"] = ev_id;
+                    temp["cf_rule"] = cf_rule;
+
+                    ev_cf.push(temp);
+                }
+            });
+
+            return ev_cf;
+        }
+
+        $(document).on('submit', '#baseForm', function (e) {
+            e.preventDefault();
+
+            var form = $('#baseForm'),
+                url  = form.attr('action'),
+                data = new FormData(form[0]);
+
+            var arr = evCf();
+            var json_arr = JSON.stringify(arr);
+
+            data.append('ev_cf', json_arr);
+
+            $.ajax({
+                url: url,
+                method: 'post',
+                contentType: false,
+                processData: false,
+                data: data,
+                success: function (response) {
+                    Swal.fire(
+                        'Good job!',
+                        'You clicked the button!',
+                        'success'
+                    )
+
+                    setTimeout(window.location.reload(), 7000);
+                },
+                error: function (error) {
+                    console.log(error);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Something went wrong!',
+                    })
+
+                    setTimeout(window.location.reload(), 7000);
+                }
+            });
+        });
     </script>
 @stop
+
+@section('plugins.Sweetalert2', true)
