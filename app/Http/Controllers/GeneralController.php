@@ -92,9 +92,26 @@ class GeneralController extends Controller
         ]);
     }
 
-    public function edit()
+    public function edit($id)
     {
+        $diseases_id = array_unique(
+            DiseaseEvidence::pluck('disease_id')->filter(function ($value, $key) {
+            return $value != NULL;
+        })->toArray());
 
+        $key = array_search((int) $id, $diseases_id);
+
+        unset($diseases_id[$key]);
+
+        $reindex = array_values($diseases_id);
+        $base = $id;
+
+        $diseases = Disease::select('id', 'name')->whereNotIn('id', $reindex)->get();
+
+        $di_ev = DiseaseEvidence::where('disease_id', $id)->get();
+        $evidences = Evidence::all();
+
+        return view('base.form', compact('base', 'diseases', 'evidences', 'di_ev'));
     }
 
     public function update(Request $request)

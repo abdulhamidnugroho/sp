@@ -60,10 +60,6 @@
 <!-- /.modal -->
 @stop
 
-@section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
-@stop
-
 @section('js')
     <script>
         var dataTable;
@@ -100,7 +96,7 @@
                         className: 'text-center',
                         render: function (data, type, row) {
                             return '<button class="btn btn-block btn-info base-detail" data-id="' + row.id + '" href="#" aria-pressed="false">Detail</a>'+
-                            '<button class="btn btn-block btn-secondary" href="{{ route("base.edit",["id"=>"/"]) }}/' + row.id +'" aria-pressed="false">Edit</button>'+
+                            '<a href="{{ route("base.edit", ["id"=>"/"]) }}/' + row.id +'"><button style="margin: 10px 0;" class="btn btn-block btn-secondary" aria-pressed="false">Edit</button></a>'+
                             '<button class="btn btn-block btn-danger" href="javascript:void(0)" onclick=deleteRow('+ row.id +')>Delete</button>';
                         },
                         width: "20%"

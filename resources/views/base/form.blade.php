@@ -28,10 +28,12 @@
                 <div class="col-sm-5">
                     <select class="form-control" name="disease_id" id="disease_id" required>
                         @foreach ($diseases as $value)
-                            {{-- @if (isset($base) && )
-
-                            @endif --}}
-                            <option value="{{ $value->id }}">{{ $value->name }}</option>
+                            <option value="{{ $value->id }}"
+                            @if (isset($base) && $base == $value->id)
+                            selected
+                            @endif
+                            > {{ $value->name }}
+                            </option>
                         @endforeach
                     </select>
                 </div>
