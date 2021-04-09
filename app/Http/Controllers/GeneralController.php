@@ -109,7 +109,18 @@ class GeneralController extends Controller
         $diseases = Disease::select('id', 'name')->whereNotIn('id', $reindex)->get();
 
         $di_ev = DiseaseEvidence::where('disease_id', $id)->get();
+
         $evidences = Evidence::all();
+
+        foreach ($evidences as $evidence) {
+            foreach ($di_ev as $ev) {
+                if ($evidence->id == $ev->evidence_id) {
+                    $evidence["set"] = true;
+                } else {
+                    $evidence["set"] = false;
+                }
+            }
+        }
 
         return view('base.form', compact('base', 'diseases', 'evidences', 'di_ev'));
     }

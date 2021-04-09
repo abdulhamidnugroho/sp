@@ -23,10 +23,13 @@
                     <h6><i class="icon fas fa-ban"></i>{{ session('failed') }}</h6>
                 </div>
             @endif
+            @isset($base)
+                <input type="hidden" name="disease_id" value="{{ $base }}">
+            @endisset
             <div class="form-group row">
                 <label for="name" class="col-sm-1 col-form-label">Penyakit</label>
                 <div class="col-sm-5">
-                    <select class="form-control" name="disease_id" id="disease_id" required>
+                    <select class="form-control" name="disease_id" id="disease_id" {{ isset($base) ? 'disabled' : 'required' }} @isset($base) disabled @endisset required>
                         @foreach ($diseases as $value)
                             <option value="{{ $value->id }}"
                             @if (isset($base) && $base == $value->id)
@@ -44,7 +47,11 @@
                 <input type="hidden" class="ev_id" value="{{ $item->id }}">
                 <label for="name" class="col-sm-8 col-form-label">{{ $key + 1 . '. ' . $item->name }}</label>
                 <div class="col-sm-2">
-                    <input type=number step=0.01 min="0" max="1" class="form-control cf_rule" id="name" placeholder="CF Expert">
+                    @if (isset($base))
+                        <input type=number step=0.01 min="0" max="1" class="form-control cf_rule" id="name" value="{{ $item->set ? $item }}" placeholder="CF Expert">
+                    @else
+                        <input type=number step=0.01 min="0" max="1" class="form-control cf_rule" id="name" placeholder="CF Expert">
+                    @endif
                 </div>
             </div>
             @endforeach
