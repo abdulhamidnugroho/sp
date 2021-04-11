@@ -48,7 +48,7 @@
                 <label for="name" class="col-sm-8 col-form-label">{{ $key + 1 . '. ' . $item->name }}</label>
                 <div class="col-sm-2">
                     @if (isset($base))
-                        <input type=number step=0.01 min="0" max="1" class="form-control cf_rule" id="name" value="{{ $item->set ? $item }}" placeholder="CF Expert">
+                        <input type=number step=0.01 min="0" max="1" class="form-control cf_rule" id="name" value="" placeholder="CF Expert">
                     @else
                         <input type=number step=0.01 min="0" max="1" class="form-control cf_rule" id="name" placeholder="CF Expert">
                     @endif
@@ -109,9 +109,9 @@
                         'Good job!',
                         'You clicked the button!',
                         'success'
-                    )
+                    );
 
-                    setTimeout(window.location.reload(), 7000);
+                    setTimeout(window.location.reload.bind(window.location), 3000);
                 },
                 error: function (error) {
                     console.log(error);
@@ -119,9 +119,9 @@
                         icon: 'error',
                         title: 'Oops...',
                         text: 'Something went wrong!',
-                    })
+                    });
 
-                    setTimeout(window.location.reload(), 7000);
+                    setTimeout(window.location.reload.bind(window.location), 3000);
                 }
             });
         });

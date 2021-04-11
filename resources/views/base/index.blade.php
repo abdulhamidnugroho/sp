@@ -112,7 +112,7 @@
             $('#modal-lg').modal();
 
             $.ajax({
-                url : '{{ env('APP_URL')}}' + '/base/detail/' + id,
+                url : '{{ env('APP_URL')}}' + 'base/detail/' + id,
                 method : 'post',
                 data: {
                     _token: "{{ csrf_token() }}",
